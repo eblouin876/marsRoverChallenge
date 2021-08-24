@@ -51,3 +51,11 @@ MMRMMRMRRM
 1 3 N
 
 5 1 E
+
+
+## Instructions for Running the Program:
+First run `npm install` to make sure the necessary packages are installed
+
+To view the tests and make sure they are passing appropriately, run `npm test`
+
+To run the interactive system and have the rover navigate a plateau, run `node roverExplorer.js`
