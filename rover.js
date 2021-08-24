@@ -12,49 +12,6 @@ module.exports = class Rover {
   }
 
   /**
-   * Method for telling the rover to turn either right or left.
-   * @param {string} direction A single letter, either R or L, that tells the rover which direction to travel and updates this.position.direction to reflect
-   */
-  turn(direction) {
-    const currentDirection = this.directions.indexOf(this.position.direction);
-    if (direction === 'L') {
-      // So instead of subtracting 1 here, we're adding 3. Since the modulo is base 4, this is the same thing as subtracting 1 but avoids problems with negatives
-      this.position.direction = this.directions[(currentDirection + 3) % 4];
-    } else if (direction === 'R') {
-      this.position.direction = this.directions[(currentDirection + 1) % 4];
-    }
-  }
-
-  /**
-   * Method that tells the rover to move in the direction it is currently facing
-   * Will not allow the rover to move past the edge of the board
-   */
-  move() {
-    switch (this.position.direction) {
-      case 'N':
-        if (this.position.y < this.boardCoordinates.y) {
-          this.position.y++;
-        }
-        break;
-      case 'S':
-        if (this.position.y > 0) {
-          this.position.y--;
-        }
-        break;
-      case 'W':
-        if (this.position.x > 0) {
-          this.position.x--;
-        }
-        break;
-      case 'E':
-        if (this.position.x < this.boardCoordinates.x) {
-          this.position.x++;
-        }
-        break;
-    }
-  }
-
-  /**
    * Method that sets the position of the rover. Gets called upon construction but can also be called separately.
    * @param {string} position A space delimited sting including the x position, y position, and direction (N, E, S, W) the rover is initially facing.
    */
@@ -113,6 +70,49 @@ module.exports = class Rover {
       } else if (['L', 'R'].includes(instruction)) {
         this.turn(instruction);
       }
+    }
+  }
+
+  /**
+   * Method for telling the rover to turn either right or left.
+   * @param {string} direction A single letter, either R or L, that tells the rover which direction to travel and updates this.position.direction to reflect
+   */
+  turn(direction) {
+    const currentDirection = this.directions.indexOf(this.position.direction);
+    if (direction === 'L') {
+      // So instead of subtracting 1 here, we're adding 3. Since the modulo is base 4, this is the same thing as subtracting 1 but avoids problems with negatives
+      this.position.direction = this.directions[(currentDirection + 3) % 4];
+    } else if (direction === 'R') {
+      this.position.direction = this.directions[(currentDirection + 1) % 4];
+    }
+  }
+
+  /**
+   * Method that tells the rover to move in the direction it is currently facing
+   * Will not allow the rover to move past the edge of the board
+   */
+  move() {
+    switch (this.position.direction) {
+      case 'N':
+        if (this.position.y < this.boardCoordinates.y) {
+          this.position.y++;
+        }
+        break;
+      case 'S':
+        if (this.position.y > 0) {
+          this.position.y--;
+        }
+        break;
+      case 'W':
+        if (this.position.x > 0) {
+          this.position.x--;
+        }
+        break;
+      case 'E':
+        if (this.position.x < this.boardCoordinates.x) {
+          this.position.x++;
+        }
+        break;
     }
   }
 
